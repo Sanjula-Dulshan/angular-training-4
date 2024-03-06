@@ -12,6 +12,8 @@ export class ChildComponent {
   @Output() messageEvent = new EventEmitter<string>();
   childMessage: string = 'From child component!';
 
+  childMessage2: string = 'From child component 2!';
+
   sendMessageToParent() {
     this.messageEvent.emit(this.childMessage);
   }

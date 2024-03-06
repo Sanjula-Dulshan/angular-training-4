@@ -1,6 +1,8 @@
 <div class="container parent">
   <h3>Parent</h3>
   Message: {{ messageFromChild }}
+  <br />
+  Message2:{{ messageFromChild2 }}
   <app-child
     [message]="messageFromParent"
     (messageEvent)="receiveMessage($event)"
