@@ -9,4 +9,10 @@ export class ParentComponent {
   constructor() {}
 
   messageFromParent = 'Hello from parent component!';
+
+  messageFromChild = '';
+
+  receiveMessage($event: string) {
+    this.messageFromChild = $event;
+  }
 }
