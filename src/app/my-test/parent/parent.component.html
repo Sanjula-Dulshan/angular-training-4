@@ -3,8 +3,11 @@
   Message: {{ messageFromChild }}
   <br />
   Message2:{{ messageFromChild2 }}
+  <br />
+  <b>Message3:{{ message }}</b>
   <app-child
     [message]="messageFromParent"
     (messageEvent)="receiveMessage($event)"
   ></app-child>
 </div>
+<app-sibling></app-sibling>
