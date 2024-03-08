@@ -10,9 +10,8 @@ import { DataService } from '../data.service';
 export class ParentComponent implements AfterViewInit, OnInit {
   constructor(private dataService: DataService) {}
 
-  messageFromParent = 'Hello from parent component!';
-
-  messageFromChild = '';
+  messageFromParent: string = '';
+  messageFromChild: string = '';
   message: string = '';
 
   receiveMessage($event: string) {
@@ -32,9 +31,5 @@ export class ParentComponent implements AfterViewInit, OnInit {
     this.dataService.currentMessage.subscribe(
       (message) => (this.message = message)
     );
-  }
-
-  newMessage() {
-    this.dataService.changeMessage('Hello from Sibling');
   }
 }

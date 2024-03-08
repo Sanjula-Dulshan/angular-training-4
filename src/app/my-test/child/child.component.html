@@ -1,7 +1,21 @@
 <div class="container child">
   <h3>Child</h3>
   {{ message }}
-  <button class="button" (click)="sendMessageToParent()">
-    Send Message to Parent
-  </button>
+  <br />
+  <b>Message3 (DataService) : {{ messageFromSibling }}</b>
+
+  <div class="mt-1">
+    <input
+      type="text"
+      #childRef
+      class="form-control mt-2"
+      placeholder="Enter message"
+    />
+  </div>
+
+  <div>
+    <button class="btn btn-success mt-2" (click)="sendMessageToParent()">
+      Send Message to Parent
+    </button>
+  </div>
 </div>

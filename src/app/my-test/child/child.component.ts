@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-child',
@@ -6,15 +14,24 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./child.component.scss'],
 })
 export class ChildComponent {
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   @Input() message: string = '';
   @Output() messageEvent = new EventEmitter<string>();
-  childMessage: string = 'From child component!';
+  @ViewChild('childRef') childRef!: ElementRef;
 
-  childMessage2: string = 'From child component 2!';
+  messageFromSibling: string = '';
+
+  childMessage2: string = 'From child component 2!'; //View Child
 
   sendMessageToParent() {
-    this.messageEvent.emit(this.childMessage);
+    const value = this.childRef.nativeElement.value;
+    this.messageEvent.emit(value);
+  }
+
+  ngOnInit() {
+    this.dataService.currentMessage.subscribe(
+      (message) => (this.messageFromSibling = message)
+    );
   }
 }

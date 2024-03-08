@@ -1,10 +1,21 @@
 <div class="container parent">
   <h3>Parent</h3>
-  Message: {{ messageFromChild }}
+  Message (@Output) : {{ messageFromChild }}
   <br />
-  Message2:{{ messageFromChild2 }}
+  Message2 (@ViewChild) : {{ messageFromChild2 }}
   <br />
-  <b>Message3:{{ message }}</b>
+  <b>Message3 (DataService) : {{ message }}</b>
+  <br />
+
+  <div class="mt-1">
+    <input
+      type="text"
+      class="form-control mt-2"
+      [(ngModel)]="messageFromParent"
+      placeholder="Enter message"
+    />
+  </div>
+
   <app-child
     [message]="messageFromParent"
     (messageEvent)="receiveMessage($event)"
