@@ -1,7 +1,8 @@
 <div class="container parent">
   <h3>Parent</h3>
-  Message (@Output) : {{ messageFromChild }}
-  <br />
+  <div [style.color]="'red'" [style.font-weight]="'bold'">
+    Message (@Output) : {{ messageFromChild }}
+  </div>
   Message2 (@ViewChild) : {{ messageFromChild2 }}
   <br />
   <b>Message3 (DataService) : {{ message }}</b>
@@ -15,6 +16,11 @@
       placeholder="Enter message"
     />
   </div>
+
+  <app-child
+    [message]="messageFromParent"
+    (messageEvent)="receiveMessage($event)"
+  ></app-child>
 
   <app-child
     [message]="messageFromParent"
