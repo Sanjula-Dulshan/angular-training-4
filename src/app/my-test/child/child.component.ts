@@ -18,12 +18,14 @@ export class ChildComponent {
 
   @Input() message: string = '';
   @Output() messageEvent = new EventEmitter<string>();
+  @ViewChild('childRef') childRef!: ElementRef;
 
   messageFromSibling: string = '';
 
   childMessage2: string = 'From child component 2!'; //View Child
 
-  sendMessageToParent(value: string) {
+  sendMessageToParent() {
+    const value = this.childRef.nativeElement.value;
     this.messageEvent.emit(value);
   }
 
