@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-child',
@@ -6,15 +7,25 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./child.component.scss'],
 })
 export class ChildComponent {
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   @Input() message: string = '';
   @Output() messageEvent = new EventEmitter<string>();
-  childMessage: string = 'From child component!';
+  childMessage: string = '';
+  messageFromSibling: string = '';
+  counter: number = 1;
 
-  childMessage2: string = 'From child component 2!';
+  childMessage2: string = 'From child component 2!'; //View Child
 
   sendMessageToParent() {
+    this.childMessage = `Message from child ${this.counter}`;
     this.messageEvent.emit(this.childMessage);
+    this.counter++;
+  }
+
+  ngOnInit() {
+    this.dataService.currentMessage.subscribe(
+      (message) => (this.messageFromSibling = message)
+    );
   }
 }

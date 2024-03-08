@@ -8,6 +8,7 @@ import { DataService } from '../data.service';
 })
 export class SiblingComponent implements OnInit {
   message: string = '';
+  counter: number = 1;
 
   constructor(private dataService: DataService) {}
 
@@ -18,6 +19,7 @@ export class SiblingComponent implements OnInit {
   }
 
   newMessage() {
-    this.dataService.changeMessage('Hello from Sibling');
+    this.dataService.changeMessage(`Hello from Sibling ${this.counter}`);
+    this.counter++;
   }
 }
