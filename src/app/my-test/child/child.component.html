@@ -4,8 +4,20 @@
   <br />
   <b>Message3 (DataService) : {{ messageFromSibling }}</b>
 
+  <div class="mt-1">
+    <input
+      type="text"
+      #childRef
+      class="form-control mt-2"
+      placeholder="Enter message"
+    />
+  </div>
+
   <div>
-    <button class="btn btn-success mt-1" (click)="sendMessageToParent()">
+    <button
+      class="btn btn-success mt-2"
+      (click)="sendMessageToParent(childRef.value)"
+    >
       Send Message to Parent
     </button>
   </div>
